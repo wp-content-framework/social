@@ -15,7 +15,7 @@
 ``` composer require wp-content-framework/social ```  
 
 ## 依存モジュール
-* [common](https://github.com/wp-content-framework/admin)  
+* [core](https://github.com/wp-content-framework/core)  
 
 ## ソーシャルログインの追加
 今後追加予定
