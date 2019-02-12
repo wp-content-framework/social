@@ -17,7 +17,7 @@ return [
 
 	'social' => [
 		'template_redirect' => [
-			'check_callback' => [],
+			'check_callback',
 		],
 	],
 
