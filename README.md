@@ -22,4 +22,5 @@
 
 # Author
 
-[technote-space](https://github.com/technote-space)
+[GitHub (Technote)](https://github.com/technote-space)  
+[Blog](https://technote.space)
