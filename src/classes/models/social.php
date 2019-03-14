@@ -146,7 +146,7 @@ class Social implements \WP_Framework_Core\Interfaces\Loader {
 	 * @return string
 	 */
 	private function get_pseudo_email_domain() {
-		return $this->apply_filters( 'pseudo_email_domain', $this->app->slug_name . '-pseudo.example.com' );
+		return $this->apply_filters( 'pseudo_email_domain', str_replace( '_', '-', $this->app->slug_name ) . '-pseudo.example.com' );
 	}
 
 	/**
