@@ -2,7 +2,7 @@
 /**
  * WP_Framework_Social Traits Social
  *
- * @version 0.0.1
+ * @version 0.0.7
  * @author Technote
  * @copyright Technote All Rights Reserved
  * @license http://www.opensource.org/licenses/gpl-2.0.php GNU General Public License, version 2
@@ -74,7 +74,7 @@ trait Social {
 	 * @return mixed
 	 */
 	protected function get_config_value( $key, $default = null ) {
-		return $this->app->utility->array_get( $this->get_configs(), $key, $default );
+		return $this->app->array->get( $this->get_configs(), $key, $default );
 	}
 
 	/**
@@ -158,7 +158,7 @@ trait Social {
 			'uuid'     => $uuid,
 			'redirect' => $this->app->input->get_current_path(),
 		];
-		$this->app->set_session( $this->get_auth_session_name(), $this->create_hash( $uuid ) );
+		$this->app->set_session( $this->get_auth_session_name(), $this->wp_create_nonce( $this->create_hash( $uuid ), false ) );
 
 		return $this->encode_state( $state );
 	}
@@ -211,10 +211,10 @@ trait Social {
 			return false;
 		}
 
-		$hash = $this->app->get_session( $this->get_auth_session_name() );
+		$nonce = $this->app->get_session( $this->get_auth_session_name() );
 		$this->app->session->delete( $this->get_auth_session_name() );
 
-		return $hash === $this->create_hash( $params['uuid'] );
+		return $this->wp_verify_nonce( $nonce, $this->create_hash( $params['uuid'] ), false );
 	}
 
 	/**

@@ -2,7 +2,7 @@
 /**
  * WP_Framework_Social Classes Models Social
  *
- * @version 0.0.1
+ * @version 0.0.7
  * @author Technote
  * @copyright Technote All Rights Reserved
  * @license http://www.opensource.org/licenses/gpl-2.0.php GNU General Public License, version 2
@@ -109,7 +109,7 @@ class Social implements \WP_Framework_Core\Interfaces\Loader {
 	 * @return string|null
 	 */
 	private function get_social_service_name( $state ) {
-		return $this->app->utility->array_get( $state, 'service' );
+		return $this->app->array->get( $state, 'service' );
 	}
 
 	/**
@@ -146,7 +146,7 @@ class Social implements \WP_Framework_Core\Interfaces\Loader {
 	 * @return string
 	 */
 	private function get_pseudo_email_domain() {
-		return $this->apply_filters( 'pseudo_email_domain', $this->app->slug_name . '-pseudo.example.com' );
+		return $this->apply_filters( 'pseudo_email_domain', str_replace( '_', '-', $this->app->slug_name ) . '-pseudo.example.com' );
 	}
 
 	/**
