@@ -74,7 +74,7 @@ trait Social {
 	 * @return mixed
 	 */
 	protected function get_config_value( $key, $default = null ) {
-		return $this->app->utility->array_get( $this->get_configs(), $key, $default );
+		return $this->app->array->get( $this->get_configs(), $key, $default );
 	}
 
 	/**

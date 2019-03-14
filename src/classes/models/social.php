@@ -109,7 +109,7 @@ class Social implements \WP_Framework_Core\Interfaces\Loader {
 	 * @return string|null
 	 */
 	private function get_social_service_name( $state ) {
-		return $this->app->utility->array_get( $state, 'service' );
+		return $this->app->array->get( $state, 'service' );
 	}
 
 	/**
