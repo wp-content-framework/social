@@ -2,7 +2,7 @@
 /**
  * WP_Framework_Social Classes Models Social
  *
- * @version 0.0.7
+ * @version 0.0.9
  * @author Technote
  * @copyright Technote All Rights Reserved
  * @license http://www.opensource.org/licenses/gpl-2.0.php GNU General Public License, version 2
@@ -30,6 +30,13 @@ class Social implements \WP_Framework_Core\Interfaces\Loader {
 		return [
 			$this->app->define->plugin_namespace . '\\Classes\\Models\\Social',
 		];
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function is_common_cache_class_settings() {
+		return true;
 	}
 
 	/**
