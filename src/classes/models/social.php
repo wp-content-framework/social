@@ -11,6 +11,9 @@
 
 namespace WP_Framework_Social\Classes\Models;
 
+use WP_Framework_Core\Traits\Loader;
+use WP_Framework_Social\Traits\Package;
+
 if ( ! defined( 'WP_CONTENT_FRAMEWORK' ) ) {
 	exit;
 }
@@ -21,7 +24,7 @@ if ( ! defined( 'WP_CONTENT_FRAMEWORK' ) ) {
  */
 class Social implements \WP_Framework_Core\Interfaces\Loader {
 
-	use \WP_Framework_Core\Traits\Loader, \WP_Framework_Social\Traits\Package;
+	use Loader, Package;
 
 	/**
 	 * @return array

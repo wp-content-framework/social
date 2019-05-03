@@ -11,6 +11,11 @@
 
 namespace WP_Framework_Social\Traits;
 
+use WP_Framework;
+use WP_Framework_Core\Traits\Hook;
+use WP_Framework_Core\Traits\Singleton;
+use WP_User;
+
 if ( ! defined( 'WP_CONTENT_FRAMEWORK' ) ) {
 	exit;
 }
@@ -18,11 +23,11 @@ if ( ! defined( 'WP_CONTENT_FRAMEWORK' ) ) {
 /**
  * Trait Social
  * @package WP_Framework_Social\Traits
- * @property \WP_Framework $app
+ * @property WP_Framework $app
  */
 trait Social {
 
-	use \WP_Framework_Core\Traits\Singleton, \WP_Framework_Core\Traits\Hook;
+	use Singleton, Hook;
 
 	/**
 	 * @var string $_slug
@@ -374,20 +379,20 @@ trait Social {
 
 	/**
 	 * @param array $user
-	 * @param \WP_User|null $wp_user
+	 * @param WP_User|null $wp_user
 	 * @param bool $is_verified
 	 *
 	 * @return bool
 	 */
-	protected abstract function register_customer( array $user, \WP_User $wp_user, $is_verified );
+	protected abstract function register_customer( array $user, WP_User $wp_user, $is_verified );
 
 	/**
 	 * @param array $user
-	 * @param \WP_User|null $wp_user
+	 * @param WP_User|null $wp_user
 	 *
 	 * @return bool
 	 */
-	protected abstract function logged_in_customer( array $user, \WP_User $wp_user );
+	protected abstract function logged_in_customer( array $user, WP_User $wp_user );
 
 	/**
 	 * @param array $user
