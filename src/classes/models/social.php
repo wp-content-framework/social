@@ -2,7 +2,7 @@
 /**
  * WP_Framework_Social Classes Models Social
  *
- * @version 0.0.9
+ * @version 0.0.10
  * @author Technote
  * @copyright Technote All Rights Reserved
  * @license http://www.opensource.org/licenses/gpl-2.0.php GNU General Public License, version 2
@@ -10,6 +10,9 @@
  */
 
 namespace WP_Framework_Social\Classes\Models;
+
+use WP_Framework_Core\Traits\Loader;
+use WP_Framework_Social\Traits\Package;
 
 if ( ! defined( 'WP_CONTENT_FRAMEWORK' ) ) {
 	exit;
@@ -21,7 +24,7 @@ if ( ! defined( 'WP_CONTENT_FRAMEWORK' ) ) {
  */
 class Social implements \WP_Framework_Core\Interfaces\Loader {
 
-	use \WP_Framework_Core\Traits\Loader, \WP_Framework_Social\Traits\Package;
+	use Loader, Package;
 
 	/**
 	 * @return array
