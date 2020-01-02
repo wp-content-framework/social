@@ -2,7 +2,6 @@
 /**
  * WP_Framework_Social Classes Models Social
  *
- * @version 0.0.10
  * @author Technote
  * @copyright Technote All Rights Reserved
  * @license http://www.opensource.org/licenses/gpl-2.0.php GNU General Public License, version 2
@@ -50,9 +49,36 @@ class Social implements \WP_Framework_Core\Interfaces\Loader {
 	}
 
 	/**
-	 * check callback
+	 * @param \WP_Framework_Social\Interfaces\Social|null $class
+	 * @param array $state_params
+	 * @param $error
+	 *
+	 * @return bool
 	 */
-	/** @noinspection PhpUnusedPrivateMethodInspection */
+	private function check_callback_error( $class, $state_params, $error ) {
+		if ( empty( $class ) ) {
+			return false;
+		}
+
+		if ( ! $class->check_state_params( $state_params ) ) {
+			return false;
+		}
+
+		if ( ! empty( $error ) ) {
+			$this->app->log( 'social error', $this->app->input->get() );
+			$this->safe_redirect( $state_params );
+
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * check callback
+	 * @noinspection PhpUnusedPrivateMethodInspection
+	 * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+	 */
 	private function check_callback() {
 		$code  = $this->app->input->get( 'code' );
 		$error = $this->app->input->get( 'error' );
@@ -63,18 +89,7 @@ class Social implements \WP_Framework_Core\Interfaces\Loader {
 
 		$state_params = $this->decode_state( $state );
 		$class        = $this->get_social_service( $state_params );
-		if ( empty( $class ) ) {
-			return;
-		}
-
-		if ( ! $class->check_state_params( $state_params ) ) {
-			return;
-		}
-
-		if ( ! empty( $error ) ) {
-			$this->app->log( 'social error', $this->app->input->get() );
-			$this->safe_redirect( $state_params );
-
+		if ( ! $this->check_callback_error( $class, $state_params, $error ) ) {
 			return;
 		}
 
@@ -110,7 +125,7 @@ class Social implements \WP_Framework_Core\Interfaces\Loader {
 	 * @return array|null|bool
 	 */
 	private function decode_state( $state ) {
-		return @json_decode( base64_decode( strtr( $state, '-_,', '+/=' ) ), true );
+		return @json_decode( base64_decode( strtr( $state, '-_,', '+/=' ) ), true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode,WordPress.PHP.NoSilencedErrors.Discouraged
 	}
 
 	/**
@@ -144,6 +159,7 @@ class Social implements \WP_Framework_Core\Interfaces\Loader {
 
 	/**
 	 * @param array $params
+	 * @SuppressWarnings(PHPMD.ExitExpression)
 	 */
 	private function safe_redirect( $params ) {
 		if ( ! empty( $params['redirect'] ) && preg_match( '#\A/[^/]+#', $params['redirect'] ) ) {
@@ -174,7 +190,7 @@ class Social implements \WP_Framework_Core\Interfaces\Loader {
 	 * @return bool
 	 */
 	public function is_pseudo_email( $email ) {
-		return preg_match( '#' . preg_quote( '@' . $this->get_pseudo_email_domain() ) . '\z#', trim( $email ) ) > 0;
+		return preg_match( '#' . preg_quote( '@' . $this->get_pseudo_email_domain(), '#' ) . '\z#', trim( $email ) ) > 0;
 	}
 
 	/**

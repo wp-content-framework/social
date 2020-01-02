@@ -2,7 +2,6 @@
 /**
  * WP_Framework_Social Traits Social
  *
- * @version 0.0.10
  * @author Technote
  * @copyright Technote All Rights Reserved
  * @license http://www.opensource.org/licenses/gpl-2.0.php GNU General Public License, version 2
@@ -30,30 +29,30 @@ trait Social {
 	use Singleton, Hook;
 
 	/**
-	 * @var string $_slug
+	 * @var string $slug
 	 */
-	private $_slug = null;
+	private $slug = null;
 
 	/**
 	 * @return string
 	 */
 	public function get_service_name() {
-		if ( ! isset( $this->_slug ) ) {
-			$this->_slug = $this->get_file_slug();
+		if ( ! isset( $this->slug ) ) {
+			$this->slug = $this->get_file_slug();
 		}
 
-		return $this->_slug;
+		return $this->slug;
 	}
 
 	/**
 	 * @return array
 	 */
-	public abstract function get_link_args();
+	abstract public function get_link_args();
 
 	/**
 	 * @return string
 	 */
-	public abstract function get_link_contents();
+	abstract public function get_link_contents();
 
 	/**
 	 * @return array
@@ -111,6 +110,7 @@ trait Social {
 	 * @param string $client_id
 	 *
 	 * @return array
+	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
 	 */
 	protected function filter_oauth_link_query(
 		/** @noinspection PhpUnusedParameterInspection */
@@ -129,9 +129,9 @@ trait Social {
 		if ( empty( $params ) ) {
 			return $url;
 		}
-		$q = strpos( $url, '?' ) !== false ? '&' : '?';
+		$query = strpos( $url, '?' ) !== false ? '&' : '?';
 
-		return $url . $q . http_build_query( $params );
+		return $url . $query . http_build_query( $params );
 	}
 
 	/**
@@ -197,7 +197,7 @@ trait Social {
 	 * @return string
 	 */
 	protected function encode_state( array $state ) {
-		return strtr( base64_encode( json_encode( $state ) ), '+/=', '-_,' );
+		return strtr( base64_encode( wp_json_encode( $state ) ), '+/=', '-_,' ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
 	}
 
 	/**
@@ -245,6 +245,7 @@ trait Social {
 	 * @param string $client_secret
 	 *
 	 * @return array
+	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
 	 */
 	protected function filter_access_token_params(
 		/** @noinspection PhpUnusedParameterInspection */
@@ -262,7 +263,7 @@ trait Social {
 	 */
 	public function get_access_token( $code, $client_id, $client_secret ) {
 		$contents = $this->get_contents( 'token_url', $this->get_access_token_params( $code, $client_id, $client_secret ) );
-		$response = @json_decode( $contents, true );
+		$response = @json_decode( $contents, true ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 		if ( empty( $response ) || ! empty( $response['error'] ) ) {
 			$this->app->log( 'social response error', [
 				'$contents' => $contents,
@@ -282,7 +283,7 @@ trait Social {
 	 */
 	public function get_user_info( $access_token ) {
 		$contents = $this->get_contents( 'user_info_url', [ 'access_token' => $access_token ] );
-		$info     = @json_decode( $contents, true );
+		$info     = @json_decode( $contents, true ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 		if ( empty( $info ) ) {
 			$this->app->log( 'social response error', [
 				'$contents' => $contents,
@@ -322,6 +323,8 @@ trait Social {
 		if ( empty( $url ) ) {
 			return false;
 		}
+
+		$options                            = [];
 		$options['ssl']['verify_peer']      = false;
 		$options['ssl']['verify_peer_name'] = false;
 		$options['http']['ignore_errors']   = true;
@@ -342,7 +345,7 @@ trait Social {
 			$options['http']['header'] = 'User-Agent: ' . $this->get_user_agent();
 		}
 
-		return @file_get_contents( $url, false, stream_context_create( $options ) );
+		return @file_get_contents( $url, false, stream_context_create( $options ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents,WordPress.PHP.NoSilencedErrors.Discouraged
 	}
 
 	/**
@@ -375,7 +378,7 @@ trait Social {
 	 *
 	 * @return mixed
 	 */
-	protected abstract function find_social_customer( $user_id );
+	abstract protected function find_social_customer( $user_id );
 
 	/**
 	 * @param array $user
@@ -384,7 +387,7 @@ trait Social {
 	 *
 	 * @return bool
 	 */
-	protected abstract function register_customer( array $user, WP_User $wp_user, $is_verified );
+	abstract protected function register_customer( array $user, WP_User $wp_user, $is_verified );
 
 	/**
 	 * @param array $user
@@ -392,24 +395,26 @@ trait Social {
 	 *
 	 * @return bool
 	 */
-	protected abstract function logged_in_customer( array $user, WP_User $wp_user );
+	abstract protected function logged_in_customer( array $user, WP_User $wp_user );
 
 	/**
 	 * @param array $user
 	 */
 	public function register_or_login_customer( array $user ) {
+		$wp_user = null;
 		if ( ! empty( $user['email'] ) ) {
-			$u = get_user_by( 'email', $user['email'] );
-		}
-		$social_id_key = 'social_login_' . $this->get_service_name();
-		if ( empty( $u ) ) {
-			$user_id = $this->app->user->first( $social_id_key, $user['id'] );
-			$u       = ! empty( $user_id ) ? get_user_by( 'id', $user_id ) : false;
+			$wp_user = get_user_by( 'email', $user['email'] );
 		}
 
-		$c           = false;
+		$social_id_key = 'social_login_' . $this->get_service_name();
+		if ( empty( $wp_user ) ) {
+			$user_id = $this->app->user->first( $social_id_key, $user['id'] );
+			$wp_user = ! empty( $user_id ) ? get_user_by( 'id', $user_id ) : false;
+		}
+
+		$customer    = false;
 		$is_verified = false;
-		if ( empty( $u ) ) {
+		if ( empty( $wp_user ) ) {
 			if ( empty( $user['email'] ) ) {
 				/** @var \WP_Framework_Social\Classes\Models\Social $social */
 				$social        = \WP_Framework_Social\Classes\Models\Social::get_instance( $this->app );
@@ -418,18 +423,29 @@ trait Social {
 				$is_verified = true;
 			}
 		}
-		if ( ! empty( $u ) ) {
-			$c = $this->find_social_customer( $u->ID );
+		if ( ! empty( $wp_user ) ) {
+			$customer = $this->find_social_customer( $wp_user->ID );
 		}
 
+		$this->check_succeeded( $user, $wp_user, $social_id_key, $customer, $is_verified );
+	}
+
+	/**
+	 * @param $user
+	 * @param $wp_user
+	 * @param $social_id_key
+	 * @param $customer
+	 * @param $is_verified
+	 */
+	private function check_succeeded( $user, $wp_user, $social_id_key, $customer, $is_verified ) {
 		$this->app->set_shared_object( 'is_social_login', true );
-		if ( empty( $c ) ) {
-			if ( ! $this->register_customer( $this->get_user_data( $user ), ! empty( $u ) ? $u : null, $is_verified ) ) {
+		if ( empty( $customer ) ) {
+			if ( ! $this->register_customer( $this->get_user_data( $user ), ! empty( $wp_user ) ? $wp_user : null, $is_verified ) ) {
 				return;
 			}
 
-			$u = get_user_by( 'email', $user['email'] );
-			if ( empty( $u ) ) {
+			$wp_user = get_user_by( 'email', $user['email'] );
+			if ( empty( $wp_user ) ) {
 				$this->app->log( 'register customer error', [
 					'user' => $user,
 				] );
@@ -437,17 +453,17 @@ trait Social {
 				return;
 			}
 		} else {
-			if ( ! $this->logged_in_customer( $user, $u ) ) {
+			if ( ! $this->logged_in_customer( $user, $wp_user ) ) {
 				return;
 			}
 		}
 		$this->app->user->delete_matched( $social_id_key, $user['id'] );
-		$this->app->user->set( $social_id_key, $user['id'], $u->ID );
+		$this->app->user->set( $social_id_key, $user['id'], $wp_user->ID );
 
 		global $current_user;
-		$current_user = null;
-		wp_set_current_user( $u->ID );
-		wp_set_auth_cookie( $u->ID, true );
+		$current_user = null; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		wp_set_current_user( $wp_user->ID );
+		wp_set_auth_cookie( $wp_user->ID, true );
 		$this->app->user->reset_user_data();
 	}
 }
