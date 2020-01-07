@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a69f8fcf3c32e3ce2c80a53ac708ca1f",
+    "content-hash": "8bd8b89040b46e0bbf94cc99d29d2a78",
     "packages": [
         {
             "name": "wp-content-framework/session",
-            "version": "v0.0.9",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-content-framework/session.git",
