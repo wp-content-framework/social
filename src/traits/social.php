@@ -197,7 +197,7 @@ trait Social {
 	 * @return string
 	 */
 	protected function encode_state( array $state ) {
-		return strtr( base64_encode( wp_json_encode( $state ) ), '+/=', '-_,' ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+		return strtr( base64_encode( $this->app->utility->json_encode( $state ) ), '+/=', '-_,' ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
 	}
 
 	/**
