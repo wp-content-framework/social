@@ -8,23 +8,23 @@
     "packages": [
         {
             "name": "wp-content-framework/session",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-content-framework/session.git",
-                "reference": "9369372f895c4a6d6e7426ef8faa1b29fa5dec55"
+                "reference": "e1ecb13f1cbfe52ba2d2405dcdc54c250eee4ea5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-content-framework/session/zipball/9369372f895c4a6d6e7426ef8faa1b29fa5dec55",
-                "reference": "9369372f895c4a6d6e7426ef8faa1b29fa5dec55",
+                "url": "https://api.github.com/repos/wp-content-framework/session/zipball/e1ecb13f1cbfe52ba2d2405dcdc54c250eee4ea5",
+                "reference": "e1ecb13f1cbfe52ba2d2405dcdc54c250eee4ea5",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.6.0"
             },
             "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.6.2",
                 "phpcompatibility/phpcompatibility-wp": "^2.1",
                 "phpmd/phpmd": "^2.8",
                 "squizlabs/php_codesniffer": "^3.5",
@@ -48,7 +48,7 @@
                 "framework",
                 "wordpress"
             ],
-            "time": "2020-01-02T08:26:54+00:00"
+            "time": "2020-02-17T16:13:59+00:00"
         }
     ],
     "packages-dev": [
