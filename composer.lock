@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "wp-content-framework/session",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-content-framework/session.git",
-                "reference": "e1ecb13f1cbfe52ba2d2405dcdc54c250eee4ea5"
+                "reference": "6f4154f51a8fb3b1ce8ec84b205394d7a5b45dff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-content-framework/session/zipball/e1ecb13f1cbfe52ba2d2405dcdc54c250eee4ea5",
-                "reference": "e1ecb13f1cbfe52ba2d2405dcdc54c250eee4ea5",
+                "url": "https://api.github.com/repos/wp-content-framework/session/zipball/6f4154f51a8fb3b1ce8ec84b205394d7a5b45dff",
+                "reference": "6f4154f51a8fb3b1ce8ec84b205394d7a5b45dff",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,13 @@
                 "framework",
                 "wordpress"
             ],
-            "time": "2020-02-17T16:13:59+00:00"
+            "funding": [
+                {
+                    "url": "https://paypal.me/technote0space",
+                    "type": "custom"
+                }
+            ],
+            "time": "2020-04-05T08:11:18+00:00"
         }
     ],
     "packages-dev": [
