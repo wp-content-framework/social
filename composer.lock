@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "wp-content-framework/session",
-            "version": "v1.0.17",
+            "version": "v1.0.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-content-framework/session.git",
-                "reference": "92a7a79bf68fbad541238692659e893c04b37fce"
+                "reference": "3f1151cbb0219d2715f8c808194497802b8de21f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-content-framework/session/zipball/92a7a79bf68fbad541238692659e893c04b37fce",
-                "reference": "92a7a79bf68fbad541238692659e893c04b37fce",
+                "url": "https://api.github.com/repos/wp-content-framework/session/zipball/3f1151cbb0219d2715f8c808194497802b8de21f",
+                "reference": "3f1151cbb0219d2715f8c808194497802b8de21f",
                 "shasum": ""
             },
             "require": {
@@ -54,7 +54,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2020-09-06T16:25:58+00:00"
+            "time": "2020-09-14T18:11:30+00:00"
         }
     ],
     "packages-dev": [
