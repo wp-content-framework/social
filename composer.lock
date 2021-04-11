@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fde2f3204ef696bae7097377eb1de2bb",
+    "content-hash": "d3ca2ff561f2792f7d2aa2b476f74667",
     "packages": [
         {
             "name": "wp-content-framework/session",
-            "version": "v1.0.35",
+            "version": "v1.0.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-content-framework/session.git",
-                "reference": "2a6d51e15ca573bd104997e8c86033909e48254a"
+                "reference": "79ee1ac2233ee9c1f8e987e303cb1da2b9533989"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-content-framework/session/zipball/2a6d51e15ca573bd104997e8c86033909e48254a",
-                "reference": "2a6d51e15ca573bd104997e8c86033909e48254a",
+                "url": "https://api.github.com/repos/wp-content-framework/session/zipball/79ee1ac2233ee9c1f8e987e303cb1da2b9533989",
+                "reference": "79ee1ac2233ee9c1f8e987e303cb1da2b9533989",
                 "shasum": ""
             },
             "require": {
@@ -27,7 +27,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
                 "phpcompatibility/phpcompatibility-wp": "^2.1",
                 "phpmd/phpmd": "^2.9",
-                "squizlabs/php_codesniffer": "^3.5",
+                "squizlabs/php_codesniffer": "^3.6",
                 "wp-coding-standards/wpcs": "^2.3"
             },
             "type": "library",
@@ -50,7 +50,7 @@
             ],
             "support": {
                 "issues": "https://github.com/wp-content-framework/session/issues",
-                "source": "https://github.com/wp-content-framework/session/tree/v1.0.35"
+                "source": "https://github.com/wp-content-framework/session/tree/v1.0.36"
             },
             "funding": [
                 {
@@ -58,7 +58,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-04-02T14:51:49+00:00"
+            "time": "2021-04-09T15:01:47+00:00"
         }
     ],
     "packages-dev": [
@@ -608,16 +608,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.5.8",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "9d583721a7157ee997f235f327de038e7ea6dac4"
+                "reference": "ffced0d2c8fa8e6cdc4d695a743271fab6c38625"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/9d583721a7157ee997f235f327de038e7ea6dac4",
-                "reference": "9d583721a7157ee997f235f327de038e7ea6dac4",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/ffced0d2c8fa8e6cdc4d695a743271fab6c38625",
+                "reference": "ffced0d2c8fa8e6cdc4d695a743271fab6c38625",
                 "shasum": ""
             },
             "require": {
@@ -660,7 +660,7 @@
                 "source": "https://github.com/squizlabs/PHP_CodeSniffer",
                 "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
             },
-            "time": "2020-10-23T02:01:07+00:00"
+            "time": "2021-04-09T00:54:41+00:00"
         },
         {
             "name": "symfony/config",
