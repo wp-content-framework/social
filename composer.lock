@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "wp-content-framework/session",
-            "version": "v1.0.40",
+            "version": "v1.0.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-content-framework/session.git",
-                "reference": "a79ae82114d141b3652562ee122749cddc1339b9"
+                "reference": "73afe86ef9a8ab13ab89cef2993f1a45f7facaae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-content-framework/session/zipball/a79ae82114d141b3652562ee122749cddc1339b9",
-                "reference": "a79ae82114d141b3652562ee122749cddc1339b9",
+                "url": "https://api.github.com/repos/wp-content-framework/session/zipball/73afe86ef9a8ab13ab89cef2993f1a45f7facaae",
+                "reference": "73afe86ef9a8ab13ab89cef2993f1a45f7facaae",
                 "shasum": ""
             },
             "require": {
@@ -50,7 +50,7 @@
             ],
             "support": {
                 "issues": "https://github.com/wp-content-framework/session/issues",
-                "source": "https://github.com/wp-content-framework/session/tree/v1.0.40"
+                "source": "https://github.com/wp-content-framework/session/tree/v1.0.41"
             },
             "funding": [
                 {
@@ -58,7 +58,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-05-08T04:34:34+00:00"
+            "time": "2021-05-21T14:03:01+00:00"
         }
     ],
     "packages-dev": [
@@ -742,16 +742,16 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v5.2.8",
+            "version": "v5.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "024e929da5a994cbab0ce2291d332f7edf926acf"
+                "reference": "2761ca2f7e2f41af3a45951e1ce8c01f121245eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/024e929da5a994cbab0ce2291d332f7edf926acf",
-                "reference": "024e929da5a994cbab0ce2291d332f7edf926acf",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/2761ca2f7e2f41af3a45951e1ce8c01f121245eb",
+                "reference": "2761ca2f7e2f41af3a45951e1ce8c01f121245eb",
                 "shasum": ""
             },
             "require": {
@@ -809,7 +809,7 @@
             "description": "Allows you to standardize and centralize the way objects are constructed in your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/dependency-injection/tree/v5.2.8"
+                "source": "https://github.com/symfony/dependency-injection/tree/v5.2.9"
             },
             "funding": [
                 {
@@ -825,7 +825,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-11T16:07:35+00:00"
+            "time": "2021-05-16T13:07:46+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
